@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.salesianostriana.dam.ejemplospringcore3jpa.model.Alumno;
+import com.salesianostriana.dam.ejemplospringcore3jpa.model.Curso;
 import com.salesianostriana.dam.ejemplospringcore3jpa.repository.AlumnoRepository;
+import com.salesianostriana.dam.ejemplospringcore3jpa.repository.CursoRepository;
 
 import jakarta.annotation.PostConstruct;
 
@@ -14,9 +16,24 @@ public class MainDeMentira {
 	@Autowired
 	private AlumnoRepository repositorio;
 	
+	@Autowired
+	private CursoRepository cursoRepo;
+	
 	@PostConstruct
 	void ejecutar() {
-		repositorio.save(new Alumno("Daniel", "Martínez León", "aaa@aaa.es"));
-		repositorio.save(new Alumno("Luismi", "López Magaña", "aaa@aaa.es"));
+		Curso c = new Curso("1Dam", "Miguel");
+		cursoRepo.save(c);
+		
+		Alumno a = new Alumno("Daniel", "Martínez León", "aaa@aaa.es");
+		Alumno b = new Alumno("Luismi", "López Magaña", "eee@eee.es");
+		repositorio.save(a);
+		repositorio.save(b);
+		
+		a.addToCurso(c);
+		
+		repositorio.save(a);
+		
+		//repositorio.findAll().forEach(a -> System.out.println(a));
+		repositorio.findAll().forEach(System.out::println);
 	}
 }
