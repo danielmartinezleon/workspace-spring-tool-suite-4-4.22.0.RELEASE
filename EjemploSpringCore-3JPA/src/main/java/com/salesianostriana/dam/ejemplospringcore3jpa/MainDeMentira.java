@@ -21,13 +21,28 @@ public class MainDeMentira {
 	
 	@PostConstruct
 	void ejecutar() {
-		Curso c = new Curso("1Dam", "Miguel");
+		//Curso c = new Curso("1Dam", "Miguel");
+		Curso c = Curso.builder()
+				.nombre("1º DAM")
+				.tutor("Miguel Campos")
+				.build();
+		
 		cursoRepo.save(c);
 		
-		Alumno a = new Alumno("Daniel", "Martínez León", "aaa@aaa.es");
+		/*Alumno a = new Alumno("Daniel", "Martínez León", "aaa@aaa.es");
 		Alumno b = new Alumno("Luismi", "López Magaña", "eee@eee.es");
 		repositorio.save(a);
 		repositorio.save(b);
+		
+		a.addToCurso(c);
+		
+		*/
+		
+		Alumno a = Alumno.builder()
+				.nombre("Daniel")
+				.apellidos("Martinez")
+				.email("aaa@gmail.com")
+				.build();
 		
 		a.addToCurso(c);
 		

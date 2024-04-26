@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.ToString;
 @Data @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class Curso {
 
 	@Id @GeneratedValue
@@ -29,6 +31,7 @@ public class Curso {
 	@OneToMany(mappedBy = "curso", fetch = FetchType.EAGER)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
+	@Builder.Default
 	private List<Alumno> alumnos = new ArrayList<>();
 	
 	
